@@ -16,7 +16,7 @@ function App() {
       {/* Not any props is sent, in this case this default values get executed */}
       {/* <Navbar/> */}
 
-      <div className="containr my-3">
+      <div className="container my-3">
         <TextForm heading="Enter the Text to Analyze" />
       </div>
       
