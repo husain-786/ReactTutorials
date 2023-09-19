@@ -21,6 +21,21 @@ export default function TextForm(props) {
     countTotalWords(x)
   }
 
+  const copyText = ()=>{
+    // finding the text area by its id....
+    var text = document.getElementById("myBox");
+    // selecting all the text present inside the textArea.....
+    text.select();
+    // above statement selects all the text present inside the textArea so we dont need to write the selectionRange.......
+    // text.selectionRange(0, 99999);
+    navigator.clipboard.writeText(text.value);
+  }
+
+  const removeExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "))
+  }
+
   // when onchange event is handled then by default an event as argument is passesd in the method of handling onchange event.....
   // this will be used repeatedly whenever we use input or textArea......
   // If we donot handle this event we would not be able to write anything in the input field or text area.......
@@ -57,9 +72,10 @@ export default function TextForm(props) {
  
   const[wordCount, coutnNumberOfWords] = useState(0)    // state for word counts...
 
+  console.log(props.mode)
   return (
     // this <>(empty tag) in react is called as JSX fragement.....
-    <>    
+    <div style={{color: props.mode=='dark'?'white': 'black', backgroundColor: props.mode=='dark'?'black': 'white'}}>    
       <div className='container'>
         {/* <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email address</label>
@@ -69,12 +85,14 @@ export default function TextForm(props) {
         <div className="my-3">
             {/* if value=x, x is a normal variable, when we use normal variable for value then the value will not be rendered
                 because by default React do not watch all the variables*/}
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{color: props.mode=='dark'?'white': 'black', background: props.mode=='dark'?'black': 'white'}}></textarea>
         </div>    
-        <div className='d-flex justify-content-between w-50'>
+        <div className='d-flex justify-content-around w-100'>
           <button className="btn btn-primary" onClick={handleOnClick}>Convert to UpperCase</button>
           <button className="btn btn-primary" onClick={convertToLowerCase}>Convert to LowerCase</button>
-          <button className="btn btn-primary" onClick={clearField}>Clear</button>
+          <button className="btn btn-primary" onClick={clearField}>Clear Field</button>
+          <button className="btn btn-primary" onClick={copyText}>Copy Text</button>
+          <button className="btn btn-primary" onClick={removeExtraSpaces}>Remove Extra Spaces</button>
         </div>  
       </div>
       <div className='container my-3'>
@@ -84,7 +102,7 @@ export default function TextForm(props) {
         <h2>Preview</h2>
         <p>{text}</p>
       </div>
-    </>
+    </div>
   )
 }
 
