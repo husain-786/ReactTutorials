@@ -5,6 +5,7 @@ import './App.css';
 import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
+import Alert from './components/Alert';
 
 function App() {
 
@@ -17,16 +18,34 @@ function App() {
     color: "black",
     background: "white",
   })
+
+  // State variable used for alert mesagesd.....
+  const [alert, setAlert] = useState(null)
+
+  // function used to show the alert contents whenever required......
+  const showAlert = (message, type)=>{
+    setAlert({
+      message:message,
+      type:type
+    })
+
+    // dismissing the alert message after 2 seconds......
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
+  }
+
   // function which will change or say handle the value of mode and will be sent as props in the NavBar.......
   const toggleMode = ()=>{
-    if (mode == "dark"){
+    if (mode === "dark"){
       setMode("light")
       setbtnText("Enable Dark Mode")
       document.body.style.backgroundColor = "white"
       setStyle({
-        color: "white",
-        background: "black",
+        color: "black",
+        background: "white",
       })
+      showAlert("Light Mode Have Been Enabled", "success")
     }
     else{
       setMode("dark")
@@ -36,11 +55,8 @@ function App() {
         color: "white",
         background: "black",
       })
+      showAlert("Dark Mode Have Been Enabled", "success")
     }
-  }
-    
-  const toggleSpeciallyForAbout = ()=>{
-    
   }
 
   return (
@@ -48,6 +64,8 @@ function App() {
       {/* Sending title as string */}
       <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText}/>
 
+      {/* Sending showAlert function as props so that we can use it on different button actions.... */}
+      <Alert alert={alert}/>
       {/* Sending title as number */}
       {/* <Navbar title={3} aboutText="About Us"/>     */}
 
@@ -55,7 +73,7 @@ function App() {
       {/* <Navbar/> */}
 
       <div className="container my-3">
-        <TextForm heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode}/>
+        <TextForm showAlert={showAlert} heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode}/>
       </div>
       
       <About mode={mode} style={style}/>

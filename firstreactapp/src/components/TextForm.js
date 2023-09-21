@@ -8,17 +8,23 @@ export default function TextForm(props) {
     // console.log("Handle on click:- " + text)   // we can access the value of state 'text' here.....
     setText(text.toUpperCase()) // will convert text to uppercase and set to text state...
     countTotalWords(text)
+    // Alert message is set for converting text to uppercase..........
+    props.showAlert("Text Converted to UpperCase", "success")
   }
 
   const convertToLowerCase = ()=>{
     setText(text.toLowerCase()) // will convert text to lowercase and set to text state...
     countTotalWords(text)
+    // Alert message is set for converting text to lowercase..........
+    props.showAlert("Text Converted to LowerCase", "success")
   }
 
   const clearField = ()=>{
     let x = ""
     setText(x) // will set text=""
     countTotalWords(x)
+    // Alert message is set for clearing Input Field..........
+    props.showAlert("Input Field is Cleared", "success")
   }
 
   const copyText = ()=>{
@@ -29,11 +35,15 @@ export default function TextForm(props) {
     // above statement selects all the text present inside the textArea so we dont need to write the selectionRange.......
     // text.selectionRange(0, 99999);
     navigator.clipboard.writeText(text.value);
+    // Alert message is set for Copying Text.........
+    props.showAlert("Copied to Clipboard", "success")
   }
 
   const removeExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "))
+    // Alert message is set for removingExtraSpaces..........
+    props.showAlert("Extra Spaces Removed", "success")
   }
 
   // when onchange event is handled then by default an event as argument is passesd in the method of handling onchange event.....
@@ -85,7 +95,7 @@ export default function TextForm(props) {
         <div className="my-3">
             {/* if value=x, x is a normal variable, when we use normal variable for value then the value will not be rendered
                 because by default React do not watch all the variables*/}
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{color: props.mode=='dark'?'white': 'black', background: props.mode=='dark'?'black': 'white'}}></textarea>
+            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{color: props.mode==='dark'?'white': 'black', background: props.mode=='dark'?'black': 'white'}}></textarea>
         </div>    
         <div className='d-flex justify-content-around w-100'>
           <button className="btn btn-primary" onClick={handleOnClick}>Convert to UpperCase</button>
