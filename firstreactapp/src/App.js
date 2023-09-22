@@ -77,6 +77,7 @@ function App() {
       randomBackgroundColor: "#0D6EFD"
     })
     showAlert("Primary Mode Have Been Enabled", "success")
+    document.title="TextUtils - Primary Mode"
   }
   // for secondary color mode....
   const changeModesSecondary = ()=>{
@@ -91,6 +92,7 @@ function App() {
       randomBackgroundColor: "#6C757D"
     })
     showAlert("Secondary Mode Have Been Enabled", "success")
+    document.title="TextUtils - Secondary Mode"
   }
   // for success color mode....
   const changeModesSuccess = ()=>{
@@ -105,6 +107,7 @@ function App() {
       randomBackgroundColor: "#198754"
     })
     showAlert("Success Mode Have Been Enabled", "success")
+    document.title="TextUtils - Success Mode"
   }
   // for danger color mode....
   const changeModesDanger = ()=>{
@@ -119,6 +122,7 @@ function App() {
       randomBackgroundColor: "#DC3545"
     })
     showAlert("Danger Mode Have Been Enabled", "success")
+    document.title="TextUtils - Danger Mode"
   }
   // for warning color mode....
   const changeModesWarning = ()=>{
@@ -133,6 +137,7 @@ function App() {
       randomBackgroundColor: "#FFC107"
     })
     showAlert("Warning Mode Have Been Enabled", "success")
+    document.title="TextUtils - Warning Mode"
   }
   // for info color mode....
   const changeModesInfo = ()=>{
@@ -147,6 +152,7 @@ function App() {
       randomBackgroundColor: "#0DCAF0"
     })
     showAlert("Info Mode Have Been Enabled", "success")
+    document.title="TextUtils - Info Mode"
   }
   // for dark color mode....
   const changeModesDark = ()=>{
@@ -161,6 +167,14 @@ function App() {
       randomBackgroundColor: "black"
     })
     showAlert("Dark Mode Have Been Enabled", "success")
+    document.title="TextUtils - Dark Mode"
+
+    setInterval(()=>{
+      document.title="Learning React"
+    }, 1000)
+    setInterval(()=>{
+      document.title="Executing React"
+    }, 1420)
   }
   // for dark color mode....
   const changeModesLight = ()=>{
@@ -174,7 +188,8 @@ function App() {
       randomTextColor: "black",
       randomBackgroundColor: "white"
     })
-    showAlert("Light Mode Have Been Enabled", "success")    
+    showAlert("Light Mode Have Been Enabled", "success") 
+    document.title="TextUtils - Home"   
   }
   return (
     <>  
