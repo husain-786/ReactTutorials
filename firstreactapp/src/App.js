@@ -32,7 +32,7 @@ function App() {
     // dismissing the alert message after 2 seconds......
     setTimeout(() => {
       setAlert(null)
-    }, 2000);
+    }, 1500);
   }
 
   // function which will change or say handle the value of mode and will be sent as props in the NavBar.......
@@ -66,21 +66,120 @@ function App() {
   })
   // for primary color mode....
   const changeModesPrimary = ()=>{
+    setMode("red")
     setStyle({
-      color: "#b3b8bd",
-      background: "#037ffc"
+      color: "white",
+      background: "#0D6EFD"
     })
-    document.body.style.backgroundColor = "#037ffc"    
+    document.body.style.backgroundColor = "#0D6EFD"     
     changeModeColors({
-      randomTextColor: "#b3b8bd",
-      randomBackgroundColor: "#037ffc"
+      randomTextColor: "#white",
+      randomBackgroundColor: "#0D6EFD"
     })
+    showAlert("Primary Mode Have Been Enabled", "success")
   }
-
+  // for secondary color mode....
+  const changeModesSecondary = ()=>{
+    setMode("secondary")
+    setStyle({
+      color: "white",
+      background: "#6C757D"
+    })
+    document.body.style.backgroundColor = "#6C757D"    
+    changeModeColors({
+      randomTextColor: "#white",
+      randomBackgroundColor: "#6C757D"
+    })
+    showAlert("Secondary Mode Have Been Enabled", "success")
+  }
+  // for success color mode....
+  const changeModesSuccess = ()=>{
+    setMode("success")
+    setStyle({
+      color: "white",
+      background: "#198754"
+    })
+    document.body.style.backgroundColor = "#198754"    
+    changeModeColors({
+      randomTextColor: "#white",
+      randomBackgroundColor: "#198754"
+    })
+    showAlert("Success Mode Have Been Enabled", "success")
+  }
+  // for danger color mode....
+  const changeModesDanger = ()=>{
+    setMode("danger")
+    setStyle({
+      color: "white",
+      background: "#DC3545"
+    })
+    document.body.style.backgroundColor = "#DC3545"    
+    changeModeColors({
+      randomTextColor: "#white",
+      randomBackgroundColor: "#DC3545"
+    })
+    showAlert("Danger Mode Have Been Enabled", "success")
+  }
+  // for warning color mode....
+  const changeModesWarning = ()=>{
+    setMode("warning")
+    setStyle({
+      color: "white",
+      background: "#FFC107"
+    })
+    document.body.style.backgroundColor = "#FFC107"    
+    changeModeColors({
+      randomTextColor: "#white",
+      randomBackgroundColor: "#FFC107"
+    })
+    showAlert("Warning Mode Have Been Enabled", "success")
+  }
+  // for info color mode....
+  const changeModesInfo = ()=>{
+    setMode("info")
+    setStyle({
+      color: "white",
+      background: "#0DCAF0"
+    })
+    document.body.style.backgroundColor = "#0DCAF0"    
+    changeModeColors({
+      randomTextColor: "#white",
+      randomBackgroundColor: "#0DCAF0"
+    })
+    showAlert("Info Mode Have Been Enabled", "success")
+  }
+  // for dark color mode....
+  const changeModesDark = ()=>{
+    setMode("dark")
+    setStyle({
+      color: "white",
+      background: "black"
+    })
+    document.body.style.backgroundColor = "black"    
+    changeModeColors({
+      randomTextColor: "white",
+      randomBackgroundColor: "black"
+    })
+    showAlert("Dark Mode Have Been Enabled", "success")
+  }
+  // for dark color mode....
+  const changeModesLight = ()=>{
+    setMode("light")
+    setStyle({
+      color: "black",
+      background: "white"
+    })
+    document.body.style.backgroundColor = "white"    
+    changeModeColors({
+      randomTextColor: "black",
+      randomBackgroundColor: "white"
+    })
+    showAlert("Light Mode Have Been Enabled", "success")    
+  }
   return (
     <>  
       {/* Sending title as string */}
-      <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} changeModesPrimary={changeModesPrimary}/>
+      <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
 
       {/* Sending showAlert function as props so that we can use it on different button actions.... */}
       <Alert alert={alert}/>
@@ -91,10 +190,10 @@ function App() {
       {/* <Navbar/> */}
 
       <div className="container my-3">
-        <TextForm showAlert={showAlert} heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode}/>
+        <TextForm showAlert={showAlert} heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
       </div>
       
-      <About mode={mode} style={style}/>
+      <About mode={mode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
     </>
   );
 }

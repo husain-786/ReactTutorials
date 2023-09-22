@@ -8,32 +8,33 @@ export default function Navbar(props) {
 
   return (
     // <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+    <nav className={`navbar navbar-expand-lg border border-success navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">{props.title}</a>
+        <a className="navbar-brand" style={props.style} href="/">{props.title}</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
+              <a className="nav-link active" aria-current="page" style={props.style} href="/">Home</a>
+            </li> 
             <li className="nav-item">
-              <a className="nav-link" href="/">{props.aboutText}</a>
+              <a className="nav-link" style={props.style} href="/">{props.aboutText}</a>
             </li>
           </ul>
           {/* <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn btn-outline-primary" type="submit">Search</button>
           </form> */}
-          <button className="btn btn-outline-primary bg-primary" type="submit" onClick={props.changeModesPrimary}></button>
-          <button className="btn btn-outline-secondary bg-secondary" type="submit"></button>
-          <button className="btn btn-outline-success bg-success" type="submit"></button>
-          <button className="btn btn-outline-danger bg-danger" type="submit"></button>
-          <button className="btn btn-outline-warning bg-warning" type="submit"></button>
-          <button className="btn btn-outline-info bg-info" type="submit"></button>
-
+          <button className="btn btn-outline-success bg-primary text-white" type="submit" onClick={props.changeModesPrimary}>Primary</button>
+          <button className="btn btn-outline-success bg-secondary text-white" type="submit" onClick={props.changeModesSecondary}>Secondary</button>
+          <button className="btn btn-outline-danger bg-success text-white" type="submit" onClick={props.changeModesSuccess}>Success</button>
+          <button className="btn btn-outline-success bg-danger text-white" type="submit" onClick={props.changeModesDanger}>Danger</button>
+          <button className="btn btn-outline-success bg-warning text-black" type="submit" onClick={props.changeModesWarning}>Warning</button>
+          <button className="btn btn-outline-success bg-info text-black" type="submit" onClick={props.changeModesInfo}>Info</button>
+          <button className="btn btn-outline-success bg-light text-dark" type="submit" onClick={props.changeModesLight}>Light</button>
+          <button className="btn btn-outline-light bg-dark text-white" type="submit" onClick={props.changeModesDark}>Dark</button>
         </div> 
         {/* <div className={`form-check form-switch text-${props.mode==='dark'?'light':'dark'}`}>
           <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode}/>

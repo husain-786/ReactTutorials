@@ -85,24 +85,24 @@ export default function TextForm(props) {
   console.log(props.mode)
   return (
     // this <>(empty tag) in react is called as JSX fragement.....
-    <div style={{color: props.mode=='dark'?'white': 'black', backgroundColor: props.mode=='dark'?'black': 'white'}}>    
+    <div style={props.style}>    
       <div className='container'>
         {/* <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email address</label>
             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
         </div> */} 
         <h1>{props.heading}</h1>
-        <div className="my-3">
+        <div className="my-3" style={props.style}>
             {/* if value=x, x is a normal variable, when we use normal variable for value then the value will not be rendered
                 because by default React do not watch all the variables*/}
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{color: props.mode==='dark'?'white': 'black', background: props.mode=='dark'?'black': 'white'}}></textarea>
+            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={props.style}></textarea>
         </div>    
         <div className='d-flex justify-content-around w-100'>
-          <button className="btn btn-primary" onClick={handleOnClick}>Convert to UpperCase</button>
-          <button className="btn btn-primary" onClick={convertToLowerCase}>Convert to LowerCase</button>
-          <button className="btn btn-primary" onClick={clearField}>Clear Field</button>
-          <button className="btn btn-primary" onClick={copyText}>Copy Text</button>
-          <button className="btn btn-primary" onClick={removeExtraSpaces}>Remove Extra Spaces</button>
+          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={handleOnClick}>Convert to UpperCase</button>
+          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={convertToLowerCase}>Convert to LowerCase</button>
+          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={clearField}>Clear Field</button>
+          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={copyText}>Copy Text</button>
+          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={removeExtraSpaces}>Remove Extra Spaces</button>
         </div>  
       </div>
       <div className='container my-3'>

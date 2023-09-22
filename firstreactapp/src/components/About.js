@@ -74,9 +74,9 @@ import React, { useState } from 'react'
                 </div>
             </div>
         </div>
-        <div className="container my-5">
+        {/* <div className="container my-5">
          <button type="button" className="btn btn-outline-primary" onClick={changeDarkAndLightMode}>{btnText}</button>
-        </div>
+        </div> */}
     </div>
   )
 }
