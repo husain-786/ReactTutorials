@@ -23,15 +23,22 @@ export default function Navbar(props) {
               <a className="nav-link" href="/">{props.aboutText}</a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          {/* <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn btn-outline-primary" type="submit">Search</button>
-          </form>
+          </form> */}
+          <button className="btn btn-outline-primary bg-primary" type="submit" onClick={props.changeModesPrimary}></button>
+          <button className="btn btn-outline-secondary bg-secondary" type="submit"></button>
+          <button className="btn btn-outline-success bg-success" type="submit"></button>
+          <button className="btn btn-outline-danger bg-danger" type="submit"></button>
+          <button className="btn btn-outline-warning bg-warning" type="submit"></button>
+          <button className="btn btn-outline-info bg-info" type="submit"></button>
+
         </div> 
-        <div className={`form-check form-switch text-${props.mode==='dark'?'light':'dark'}`}>
+        {/* <div className={`form-check form-switch text-${props.mode==='dark'?'light':'dark'}`}>
           <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode}/>
           <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{props.btnText}</label>
-        </div>
+        </div> */}
       </div>
     </nav>  
   )

@@ -59,10 +59,28 @@ function App() {
     }
   }
 
+  // state used to change the different color modes of page.......
+  const [colorModes, changeModeColors] = useState({
+    randomTextColor: "black",
+    randomBackgroundColor: "white",
+  })
+  // for primary color mode....
+  const changeModesPrimary = ()=>{
+    setStyle({
+      color: "#b3b8bd",
+      background: "#037ffc"
+    })
+    document.body.style.backgroundColor = "#037ffc"    
+    changeModeColors({
+      randomTextColor: "#b3b8bd",
+      randomBackgroundColor: "#037ffc"
+    })
+  }
+
   return (
     <>  
       {/* Sending title as string */}
-      <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText}/>
+      <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} changeModesPrimary={changeModesPrimary}/>
 
       {/* Sending showAlert function as props so that we can use it on different button actions.... */}
       <Alert alert={alert}/>
