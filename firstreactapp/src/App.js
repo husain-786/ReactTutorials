@@ -206,8 +206,8 @@ function App() {
       <Router>
         
           {/* Sending title as string */}
-          {/* <Route element={<Navbar titl e="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>}/> */}
-          <Navbar titl e="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+          {/* <Route element={<Navbar titl e="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>}/> */}
+          <Navbar titl e="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
           
           {/* Sending showAlert function as props so that we can use it on different button actions.... */}
           {/* <Route element={<Alert alert={alert}/>}/> */}
@@ -230,7 +230,7 @@ function App() {
           }/>
           <Route path="/" element={
             <div className="container my-3">
-              <TextForm showAlert={showAlert} heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+              <TextForm showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove Extra Spaces" mode={mode} toggleMode={toggleMode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
             </div>        
           }/>
         </Routes>

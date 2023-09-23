@@ -7,14 +7,12 @@ export default function TextForm(props) {
     // console.log(typeof(event.target.className))  // returns the classes used in that particular tag..... 
     // console.log("Handle on click:- " + text)   // we can access the value of state 'text' here.....
     setText(text.toUpperCase()) // will convert text to uppercase and set to text state...
-    countTotalWords(text)
     // Alert message is set for converting text to uppercase..........
     props.showAlert("Text Converted to UpperCase", "success")
   }
 
   const convertToLowerCase = ()=>{
     setText(text.toLowerCase()) // will convert text to lowercase and set to text state...
-    countTotalWords(text)
     // Alert message is set for converting text to lowercase..........
     props.showAlert("Text Converted to LowerCase", "success")
   }
@@ -22,7 +20,6 @@ export default function TextForm(props) {
   const clearField = ()=>{
     let x = ""
     setText(x) // will set text=""
-    countTotalWords(x)
     // Alert message is set for clearing Input Field..........
     props.showAlert("Input Field is Cleared", "success")
   }
@@ -35,6 +32,8 @@ export default function TextForm(props) {
     // above statement selects all the text present inside the textArea so we dont need to write the selectionRange.......
     // text.selectionRange(0, 99999);
     navigator.clipboard.writeText(text.value);
+    // Removing the selection after copying text to clipboard...
+    document.getSelection().removeAllRanges()
     // Alert message is set for Copying Text.........
     props.showAlert("Copied to Clipboard", "success")
   }
@@ -53,22 +52,8 @@ export default function TextForm(props) {
     // console.log("handle on change")
     setText(event.target.value)
     // console.log(event.target.value + "=======text")
-    countTotalWords(event.target.value) 
   }
 
-  // function to count total number of words excluding blank spaces around....
-  function countTotalWords(ch){ 
-    let x = ch.split(" ")
-    // console.log(x)
-    let count = 0;
-    for (let i=0, len=x.length; i<len; i++ ){
-      if (x[i] !== "" && x[i] !== " "){
-        count++;
-      }
-    } 
-    coutnNumberOfWords(count)
-  }
-  
   // Here below statement defines a state (a state is a hook)
   // state acts like a variable but we cannot assign a value directly to a state like variables
   // instead we need a method to assign or update a value to it.
@@ -80,8 +65,6 @@ export default function TextForm(props) {
 
   // setText("Husain")  // Correct way to change the state value is by using the method defined while defining state.....
  
-  const[wordCount, coutnNumberOfWords] = useState(0)    // state for word counts...
-
   console.log(props.mode)
   return (
     // this <>(empty tag) in react is called as JSX fragement.....
@@ -91,25 +74,25 @@ export default function TextForm(props) {
             <label for="exampleFormControlInput1" class="form-label">Email address</label>
             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
         </div> */} 
-        <h1>{props.heading}</h1>
+        <h2 className="mb-4">{props.heading}</h2>
         <div className="my-3" style={props.style}>
             {/* if value=x, x is a normal variable, when we use normal variable for value then the value will not be rendered
                 because by default React do not watch all the variables*/}
             <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={props.style}></textarea>
         </div>    
-        <div className='d-flex justify-content-around w-100'>
-          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={handleOnClick}>Convert to UpperCase</button>
-          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={convertToLowerCase}>Convert to LowerCase</button>
-          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={clearField}>Clear Field</button>
-          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={copyText}>Copy Text</button>
-          <button className="btn btn-primary btn-outline-success" style={props.style} onClick={removeExtraSpaces}>Remove Extra Spaces</button>
-        </div>  
+        {/* <div className='d-flex justify-content-around w-100'> */}
+          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={handleOnClick}>Convert to UpperCase</button>
+          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={convertToLowerCase}>Convert to LowerCase</button>
+          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={clearField}>Clear Field</button>
+          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={copyText}>Copy Text</button>
+          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={removeExtraSpaces}>Remove Extra Spaces</button>
+        {/* </div>   */}
       </div>
       <div className='container my-3'>
-        <h2>Text Summary</h2>
-        <p>{wordCount} words and {text.length} characters</p>
-        <p>{0.008*wordCount} Minutes Read</p>
-        <h2>Preview</h2>
+        <h3>Text Summary</h3>
+        <p>{text.split(" ").filter((x)=>{return x.length!=0}).length} words and {text.length} characters</p>
+        <p>{0.008*text.split(" ").filter((x)=>{return x.length!=0}).length} Minutes Read</p>
+        <h3>Preview</h3>
         <p>{text}</p>
       </div>
     </div>

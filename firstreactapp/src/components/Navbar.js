@@ -28,14 +28,14 @@ export default function Navbar(props) {
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn btn-outline-primary" type="submit">Search</button>
           </form> */}
-          <button className="btn btn-outline-success bg-primary text-white" type="submit" onClick={props.changeModesPrimary}>Primary</button>
-          <button className="btn btn-outline-success bg-secondary text-white" type="submit" onClick={props.changeModesSecondary}>Secondary</button>
-          <button className="btn btn-outline-danger bg-success text-white" type="submit" onClick={props.changeModesSuccess}>Success</button>
-          <button className="btn btn-outline-success bg-danger text-white" type="submit" onClick={props.changeModesDanger}>Danger</button>
-          <button className="btn btn-outline-success bg-warning text-black" type="submit" onClick={props.changeModesWarning}>Warning</button>
-          <button className="btn btn-outline-success bg-info text-black" type="submit" onClick={props.changeModesInfo}>Info</button>
-          <button className="btn btn-outline-success bg-light text-dark" type="submit" onClick={props.changeModesLight}>Light</button>
-          <button className="btn btn-outline-light bg-dark text-white" type="submit" onClick={props.changeModesDark}>Dark</button>
+          <button className="btn btn-outline-success bg-primary text-white mx-1 my-1" type="submit" onClick={props.changeModesPrimary}>Primary</button>
+          <button className="btn btn-outline-success bg-secondary text-white mx-1 my-1" type="submit" onClick={props.changeModesSecondary}>Secondary</button>
+          <button className="btn btn-outline-danger bg-success text-white mx-1 my-1" type="submit" onClick={props.changeModesSuccess}>Success</button>
+          <button className="btn btn-outline-success bg-danger text-white mx-1 my-1" type="submit" onClick={props.changeModesDanger}>Danger</button>
+          <button className="btn btn-outline-success bg-warning text-black mx-1 my-1" type="submit" onClick={props.changeModesWarning}>Warning</button>
+          <button className="btn btn-outline-success bg-info text-black mx-1 my-1" type="submit" onClick={props.changeModesInfo}>Info</button>
+          <button className="btn btn-outline-success bg-light text-dark mx-1 my-1" type="submit" onClick={props.changeModesLight}>Light</button>
+          <button className="btn btn-outline-light bg-dark text-white mx-1 my-1" type="submit" onClick={props.changeModesDark}>Dark</button>
         </div> 
         {/* <div className={`form-check form-switch text-${props.mode==='dark'?'light':'dark'}`}>
           <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode}/>
