@@ -6,6 +6,12 @@ import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
 
@@ -191,24 +197,44 @@ function App() {
     showAlert("Light Mode Have Been Enabled", "success") 
     document.title="TextUtils - Home"   
   }
+// Initially Switch was included inside the Router version less than 6 but now the switch has been removed from the Router 
+// version6, Current Syntax is <Router><Routes><Route path="" element=""></Route></Routes></Router>
   return (
     <>  
-      {/* Sending title as string */}
-      <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+      {/* Implemeting Router here to open About and TextUtils without reloading page.....
+      Use of React Router starts with the Router Tag...... */}
+      <Router>
+        
+          {/* Sending title as string */}
+          {/* <Route element={<Navbar titl e="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>}/> */}
+          <Navbar titl e="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} btnText={btnText} style={style}  changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+          
+          {/* Sending showAlert function as props so that we can use it on different button actions.... */}
+          {/* <Route element={<Alert alert={alert}/>}/> */}
+          <Alert alert={alert}/>
 
-      {/* Sending showAlert function as props so that we can use it on different button actions.... */}
-      <Alert alert={alert}/>
-      {/* Sending title as number */}
-      {/* <Navbar title={3} aboutText="About Us"/>     */}
+          {/* Sending title as number */}
+          {/* <Navbar title={3} aboutText="About Us"/>     */}
 
-      {/* Not any props is sent, in this case this default values get executed */}
-      {/* <Navbar/> */}
+          {/* Not any props is sent, in this case this default values get executed */}
+          {/* <Navbar/> */}
 
-      <div className="container my-3">
-        <TextForm showAlert={showAlert} heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
-      </div>
-      
-      <About mode={mode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+          {/* <div className="container my-3">
+            <TextForm showAlert={showAlert} heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+          </div> */}
+          
+          {/* <About mode={mode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/> */}
+        <Routes>
+          <Route path="/about" element={
+            <About mode={mode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+          }/>
+          <Route path="/" element={
+            <div className="container my-3">
+              <TextForm showAlert={showAlert} heading="Enter the Text to Analyze" mode={mode} toggleMode={toggleMode} style={style} changeModesPrimary={changeModesPrimary} changeModesSecondary={changeModesSecondary} changeModesSuccess={changeModesSuccess} changeModesDanger={changeModesDanger} changeModesWarning={changeModesWarning} changeModesInfo={changeModesInfo} changeModesLight={changeModesLight} changeModesDark={changeModesDark}/>
+            </div>        
+          }/>
+        </Routes>
+      </Router>        
     </>
   );
 }
