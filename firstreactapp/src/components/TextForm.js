@@ -81,17 +81,17 @@ export default function TextForm(props) {
             <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={props.style}></textarea>
         </div>    
         {/* <div className='d-flex justify-content-around w-100'> */}
-          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={handleOnClick}>Convert to UpperCase</button>
-          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={convertToLowerCase}>Convert to LowerCase</button>
-          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={clearField}>Clear Field</button>
-          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={copyText}>Copy Text</button>
-          <button className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={removeExtraSpaces}>Remove Extra Spaces</button>
+          <button disabled={text.trim().length===0} className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={handleOnClick}>Convert to UpperCase</button>
+          <button disabled={text.trim().length===0} className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={convertToLowerCase}>Convert to LowerCase</button>
+          <button disabled={text.trim().length===0} className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={clearField}>Clear Field</button>
+          <button disabled={text.trim().length===0}className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={copyText}>Copy Text</button>
+          <button disabled={text.trim().length===0} className="btn btn-primary btn-outline-success mx-1 my-1" style={props.style} onClick={removeExtraSpaces}>Remove Extra Spaces</button>
         {/* </div>   */}
       </div>
       <div className='container my-3'>
         <h3>Text Summary</h3>
-        <p>{text.split(" ").filter((x)=>{return x.length!=0}).length} words and {text.length} characters</p>
-        <p>{0.008*text.split(" ").filter((x)=>{return x.length!=0}).length} Minutes Read</p>
+        <p>{text.split(/\s+/).filter((x)=>{return x.length!==0}).length} words and {text.trim().length} characters</p>
+        <p>{0.008*text.split(/\s+/).filter((x)=>{return x.length!==0}).length} Minutes Read</p>
         <h3>Preview</h3>
         <p>{text}</p>
       </div>

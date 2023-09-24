@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 
 // export default function About({mode}) {  // using this syntax we can access directly without using keyword props......
 export default function About(props) {

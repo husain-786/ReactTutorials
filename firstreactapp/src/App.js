@@ -10,7 +10,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
   //It is a state which defines the mode of Navbar on the action of switch........
   const [mode, setMode] = useState("light")
   // State used to change the text beside the toggle button in NavBar, it is sent as props in the NavBar.....
-  const[btnText, setbtnText] = useState("Enable dark Mode")
+  // const[btnText, setbtnText] = useState("Enable dark Mode")
   // style state specially used for About.JS.........
   const [style, setStyle] = useState({
     color: "black",
@@ -45,7 +44,7 @@ function App() {
   const toggleMode = ()=>{
     if (mode === "dark"){
       setMode("light")
-      setbtnText("Enable Dark Mode")
+      //setbtnText("Enable Dark Mode")
       document.body.style.backgroundColor = "white"
       setStyle({
         color: "black",
@@ -55,7 +54,7 @@ function App() {
     }
     else{
       setMode("dark")
-      setbtnText("Enable Light Mode")
+      // setbtnText("Enable Light Mode")
       document.body.style.backgroundColor = "black"
       setStyle({
         color: "white",
@@ -65,11 +64,6 @@ function App() {
     }
   }
 
-  // state used to change the different color modes of page.......
-  const [colorModes, changeModeColors] = useState({
-    randomTextColor: "black",
-    randomBackgroundColor: "white",
-  })
   // for primary color mode....
   const changeModesPrimary = ()=>{
     setMode("red")
@@ -78,10 +72,6 @@ function App() {
       background: "#0D6EFD"
     })
     document.body.style.backgroundColor = "#0D6EFD"     
-    changeModeColors({
-      randomTextColor: "#white",
-      randomBackgroundColor: "#0D6EFD"
-    })
     showAlert("Primary Mode Have Been Enabled", "success")
     document.title="TextUtils - Primary Mode"
   }
@@ -92,11 +82,7 @@ function App() {
       color: "white",
       background: "#6C757D"
     })
-    document.body.style.backgroundColor = "#6C757D"    
-    changeModeColors({
-      randomTextColor: "#white",
-      randomBackgroundColor: "#6C757D"
-    })
+    document.body.style.backgroundColor = "#6C757D"   
     showAlert("Secondary Mode Have Been Enabled", "success")
     document.title="TextUtils - Secondary Mode"
   }
@@ -108,10 +94,6 @@ function App() {
       background: "#198754"
     })
     document.body.style.backgroundColor = "#198754"    
-    changeModeColors({
-      randomTextColor: "#white",
-      randomBackgroundColor: "#198754"
-    })
     showAlert("Success Mode Have Been Enabled", "success")
     document.title="TextUtils - Success Mode"
   }
@@ -122,11 +104,7 @@ function App() {
       color: "white",
       background: "#DC3545"
     })
-    document.body.style.backgroundColor = "#DC3545"    
-    changeModeColors({
-      randomTextColor: "#white",
-      randomBackgroundColor: "#DC3545"
-    })
+    document.body.style.backgroundColor = "#DC3545"   
     showAlert("Danger Mode Have Been Enabled", "success")
     document.title="TextUtils - Danger Mode"
   }
@@ -137,11 +115,7 @@ function App() {
       color: "white",
       background: "#FFC107"
     })
-    document.body.style.backgroundColor = "#FFC107"    
-    changeModeColors({
-      randomTextColor: "#white",
-      randomBackgroundColor: "#FFC107"
-    })
+    document.body.style.backgroundColor = "#FFC107"  
     showAlert("Warning Mode Have Been Enabled", "success")
     document.title="TextUtils - Warning Mode"
   }
@@ -152,11 +126,7 @@ function App() {
       color: "white",
       background: "#0DCAF0"
     })
-    document.body.style.backgroundColor = "#0DCAF0"    
-    changeModeColors({
-      randomTextColor: "#white",
-      randomBackgroundColor: "#0DCAF0"
-    })
+    document.body.style.backgroundColor = "#0DCAF0"  
     showAlert("Info Mode Have Been Enabled", "success")
     document.title="TextUtils - Info Mode"
   }
@@ -167,20 +137,16 @@ function App() {
       color: "white",
       background: "black"
     })
-    document.body.style.backgroundColor = "black"    
-    changeModeColors({
-      randomTextColor: "white",
-      randomBackgroundColor: "black"
-    })
+    document.body.style.backgroundColor = "black"  
     showAlert("Dark Mode Have Been Enabled", "success")
     document.title="TextUtils - Dark Mode"
 
-    setInterval(()=>{
-      document.title="Learning React"
-    }, 1000)
-    setInterval(()=>{
-      document.title="Executing React"
-    }, 1420)
+    // setInterval(()=>{
+    //   document.title="Learning React"
+    // }, 1000)
+    // setInterval(()=>{
+    //   document.title="Executing React"
+    // }, 1420)
   }
   // for dark color mode....
   const changeModesLight = ()=>{
@@ -189,11 +155,7 @@ function App() {
       color: "black",
       background: "white"
     })
-    document.body.style.backgroundColor = "white"    
-    changeModeColors({
-      randomTextColor: "black",
-      randomBackgroundColor: "white"
-    })
+    document.body.style.backgroundColor = "white"  
     showAlert("Light Mode Have Been Enabled", "success") 
     document.title="TextUtils - Home"   
   }
