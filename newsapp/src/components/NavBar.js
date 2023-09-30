@@ -1,49 +1,61 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export class NavBar extends Component {
-  static propTypes = {
-
-  }
-
   render() {
     return (
-      <div>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-            <a className="navbar-brand" href="/">Navbar</a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <div className={`mode-${this.props.mode}`} style={this.props.style} >
+        <nav className={`navbar navbar-expand-lg bg-body-tertiary mode-${this.props.mode}`} style={this.props.navStyle}>
+          <div className={`container-fluid mode-${this.props.mode}`} style={this.props.style}>
+              <Link to="/" className={`navbar-brand mode-${this.props.mode}`} style={this.props.style}>LatestNews</Link>
+              <button className={`navbar-toggler mode-${this.props.mode}`} style={this.props.style} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className={`collapse navbar-collapse mode-${this.props.mode}`} style={this.props.style} id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Home</a>
+                  <Link className={`nav-link active mode-${this.props.mode}`} style={this.props.style} aria-current="page" to="/">Home</Link>
                 </li>
-                <li className="nav-item">
-                <a className="nav-link" href="/">Link</a>
+                {/* <li className="nav-item">
+                  <Link className="nav-link" to="/">Link</Link>
+                </li> */}
+                <li className={`nav-item dropdown mode-${this.props.mode}`} style={this.props.style}>
+                  <Link className={`nav-link dropdown-toggle mode-${this.props.mode}`} style={this.props.style} to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Category
+                  </Link>
+                  <ul className={`dropdown-menu mode-${this.props.mode}`} style={this.props.style}>
+                      <li><Link className={`dropdown-item mode-${this.props.mode}`} style={this.props.style} to="/buiseness">Business</Link></li>
+                      <li><Link className={`dropdown-item mode-${this.props.mode}`} style={this.props.style} to="/entertainment">Entertainment</Link></li>
+                      <li><Link className={`dropdown-item mode-${this.props.mode}`} style={this.props.style} to="/general">General</Link></li>
+                      <li><Link className={`dropdown-item mode-${this.props.mode}`} style={this.props.style} to="/health"> Health</Link></li>
+                      <li><Link className={`dropdown-item mode-${this.props.mode}`} style={this.props.style} to="/science">Science</Link></li>
+                      <li><Link className={`dropdown-item mode-${this.props.mode}`} style={this.props.style} to="/sports">Sports</Link></li>
+                      <li><Link className={`dropdown-item mode-${this.props.mode}`} style={this.props.style} to="/technology">Technology</Link></li>              
+                  </ul>
                 </li>
-                <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </a>
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="/">Action</a></li>
-                    <li><a className="dropdown-item" href="/">Another action</a></li>
-                    <li><hr className="dropdown-divider"/></li>
-                    <li><a className="dropdown-item" href="/">Something else here</a></li>
-                </ul>
-                </li>
-                <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true" href="/">Disabled</a>
-                </li>
-            </ul>
-            <form className="d-flex" role="search">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                {/* <li className="nav-item">
+                  <Link className="nav-link disabled" aria-disabled="true" to="/">Disabled</Link>
+                </li> */}
+              </ul>
+              {/* <form className="d-flex" role="search">
+                  <input id="search" className="form-control me-2" type="search" placeholder="Search By Category" aria-label="Search"/>
+                  <button className="btn btn-outline-success" type="submit">Search</button>
+              </form> */}
+              {/* onClick={this.props.searchByCategory} */}
+
+              <div className={`mode-${this.props.mode}`} style={this.props.style}>
+                <div className="btn btn-outline-success bg-primary text-white mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesPrimary}></div>
+                <div className="btn btn-outline-success bg-secondary text-white mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesSecondary}></div>
+                <div className="btn btn-outline-danger bg-success text-white mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesSuccess}></div>
+                <div className="btn btn-outline-success bg-danger text-white mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesDanger}></div>
+                <div className="btn btn-outline-success bg-warning text-black mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesWarning}></div>
+                <div className="btn btn-outline-success bg-info text-black mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesInfo}></div>
+                <div className="btn btn-outline-success bg-light text-dark mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesLight}></div>
+                <div className="btn btn-outline-light bg-dark text-white mx-1 my-1" style={{height:"30px", width:"40px", borderRadius:"20px"}} onClick={this.props.changeModesDark}></div>            
+              </div>
             </div>
-        </div>
+          </div>
         </nav>        
       </div>
     )

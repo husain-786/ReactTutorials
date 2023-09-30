@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
+import PropTypes from 'prop-types'
+
+import {
+  Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 export class News extends Component {
   // variables ussed in the class....
@@ -266,6 +273,15 @@ export class News extends Component {
   //     "content": "The sun rises over downtown Roseburg, Oregon, inside the Umpqua Valley.Roseburg, Oregon Driving into Roseburg feels like entering a postcard.\r\nThe small city, tucked in the mountains of southwestern … [+17605 chars]"
   //   }
   // ]
+  // static defaultProps = {
+  //   country:'in',
+  //   category:'science'
+  // }
+
+  // static propTypes = {
+  //   country:PropTypes.string,
+  //   category:PropTypes.string,
+  // }
 
   constructor(){
     super();
@@ -276,12 +292,12 @@ export class News extends Component {
       loading:false,
       page:1,
       totalRecords: 0,
-      pageSize:3
+      pageSize:6,
+      cardBorderColor:"white"
     }
   }
-
   async componentDidMount(){
-    let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=31c9cb518db0432aa69000aa8d5205b6&pageSize=${this.state.pageSize}`
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&pageSize=${this.state.pageSize}`
 
     this.setState({
       loading:true,
@@ -299,7 +315,7 @@ export class News extends Component {
   }
 
   handlePreviousClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=31c9cb518db0432aa69000aa8d5205b6&page=${this.state.page - 1}&pageSize=${this.state.pageSize}`
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${this.state.page - 1}&pageSize=${this.state.pageSize}`
     
     this.setState({
       loading:true,
@@ -316,7 +332,10 @@ export class News extends Component {
   }
 
   handleNextClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=31c9cb518db0432aa69000aa8d5205b6&page=${this.state.page + 1}&pageSize=${this.state.pageSize}`
+    // keyHarry=  dbe57b028aeb41e285a226a94865f7a7&page=
+    // keySajjad= 31c9cb518db0432aa69000aa8d5205b6&page=
+
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${this.state.page + 1}&pageSize=${this.state.pageSize}`
         
     this.setState({
       loading:true,
@@ -333,24 +352,25 @@ export class News extends Component {
   }
   
   render() {
+    let {country, category} = this.props
     return (
-      <div>
-        <div className="container my-3">
+      <div className={`mode-${this.props.mode}`} style={this.props.style}>
+        <div className="container py-3">
             <h1 className='text-center mb-3'>World's Current News</h1>
             {this.state.loading && <Spinner/>}
             {/* this.state.loading is true then hide all the news cards and if the this.state.loading is false then display only cards
                 or in another words to display the loader hide the cards and to hide the loader display the cards. */}
-            <div className="row">
+            <div className={`row mode-${this.props.mode}`} style={this.props.style}>
               {!this.state.loading && this.state.articles.map((element)=>{                
                 // Here articles is a list, which contails details of multiple different news article.
                 // Here I am looping through the articles using map and returning a component with unique id..... 
-                return <div className="col-md-4 my-3" id={element.url}>
-                  <NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url}/>
+                return <div className={`col-md-4 my-3 mode-${this.props.mode}`} style={this.props.style} id={element.url}>
+                  <NewsItem title={element.title} cardBorderColor={this.state.cardBorderColor} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} mode={this.props.mode} style={this.props.style}/>
                 </div>
               })}
             </div>
         </div>
-        <div className="container d-flex justify-content-between mb-5">
+        <div className="container d-flex justify-content-between pb-5">
           <button disabled={this.state.page<=1} type="button" className="btn btn-primary" onClick={this.handlePreviousClick}>&larr; Previous</button>
           <button disabled={this.state.page*this.state.pageSize>=this.state.totalRecords} type="button" className="btn btn-primary" onClick={this.handleNextClick}>Next &rarr;</button>
         </div>

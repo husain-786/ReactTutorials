@@ -148,7 +148,7 @@ function App() {
     //   document.title="Executing React"
     // }, 1420)
   }
-  // for dark color mode....
+  // for light color mode....
   const changeModesLight = ()=>{
     setMode("light")
     setStyle({
