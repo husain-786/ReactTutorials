@@ -4,13 +4,14 @@ export class NewsItem extends Component {
   render() {
     // this is the way to store all the props coming to its components....
     // Its called destructuring, and we can put out out from props whatever we want....
-    let { title, description, imageUrl, newsUrl, author, date} = this.props;
+    let { title, description, imageUrl, author, date} = this.props;
     return (
-      <div className={`overflow-auto mode-${this.props.mode}`} style={{border:`1px solid ${this.props.cardBorderColor}`, borderRadius:"5px", height:"500px"}}>
+      <div className={`overflow-auto mode-${this.props.mode}`} style={{border:`1px solid ${this.props.cardBorderColor}`, borderRadius:"5px", height:"450px"}}>
         {/* <a href={newsUrl} target="_blank" rel="noreferrer" > */}
           <div className={`card mode-${this.props.mode}`} style={this.props.style}>
+          <span className="badge bg-danger" style={{left:"70%", zIndex:1, borderRadius:"5px"}}> {this.props.source} </span>
+
             <img src={!imageUrl?"https://fdn.gsmarena.com/imgroot/news/21/08/xiaomi-smart-home-india-annoucnements/-476x249w4/gsmarena_00.jpg":imageUrl} className="card-img-top" alt="..." />
-            <span className="badge bg-danger" style={{left:"70%", zIndex:1}}> {this.props.source} </span>
             <div className={`card-body mode-${this.props.mode}`} style={this.props.style}>
               <h5 className={`card-title mode-${this.props.mode}`} style={this.props.style}>{title}</h5>
               <p className={`card-text mode-${this.props.mode}`} style={this.props.style}>{description}</p>

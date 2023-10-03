@@ -10,8 +10,8 @@ export class NavBar extends Component {
   }
   render() {
     return (
-      <div className={`position-sticky mode-${this.props.mode}`} style={this.props.style} >
-        <nav className={`navbar navbar-expand-lg bg-body-tertiary mode-${this.props.mode}`} style={this.props.navStyle}>
+      <div className={`mode-${this.props.mode}`} style={this.props.style} >
+        <nav className={`position-fixed w-100 navbar navbar-expand-lg bg-body-tertiary mode-${this.props.mode}`} style={this.props.navStyle}> 
           <div className={`container-fluid mode-${this.props.mode}`} style={this.props.style}>
             <Link to="/" className={`navbar-brand mode-${this.props.mode}`} style={this.props.style}>NewsFlash</Link>
             <button className={`navbar-toggler mode-${this.props.mode}`} style={this.props.style} type="button" data-bs-toggle="collapse"     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

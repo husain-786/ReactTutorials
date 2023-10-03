@@ -422,7 +422,7 @@ export class News extends Component {
 
   render() {
     return (
-      <div className={`mode-${this.props.mode}`} style={this.props.style}>
+      <div className={`pt-5 mode-${this.props.mode}`} style={this.props.style}>
        {/* <div className={`container mode-${this.props.mode}`} style={this.props.style}> */}
          {/* <div className="container py-3"> */}
             {/* <div className={`mode-${this.props.mode}`} style={this.props.style}> */}
@@ -438,7 +438,7 @@ export class News extends Component {
                       // number of details to cancatinate after each loading......
                       dataLength={this.state.articles.length}
                       // fetchMoreData function used to concat the next requested details to display after loading.......
-                      next={this.fetchMoreData}
+                      next={this.fetchMoreData} 
                       // if has more value is true then only infinite loader work.....
                       hasMore={this.state.articles.length !== this.state.totalRecords}
                       // loader that want to display while data is getting fetched and concatinating the data to display.....
@@ -452,7 +452,7 @@ export class News extends Component {
                     // Here articles is a list, which contails details of multiple different news article.
                     // Here I am looping through the articles using map and returning a component with unique id..... 
                     return <div className={`col-md-4 my-3 mode-${this.props.mode}`} style={this.props.style} id={element.url}>
-                      <a href={element.url} target="_blank" rel="noreferrer" style={{textDcoration:"none"}}>
+                      <a className="text-decoration-none" href={element.url} target="_blank" rel="noreferrer">
                         <NewsItem title={element.title} cardBorderColor={this.state.cardBorderColor} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} mode={this.props.mode} style={this.props.style} date={element.publishedAt} author={element.author} 
                         source={element.source.name}/>
                       </a>
