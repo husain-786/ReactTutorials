@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+*::-webkit-scrollbar{
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none
+}
+
+/* Apply basic styles to your navbar */
+.navbar {
+  padding: 10px 0; /* Add some padding for spacing */
+  position: sticky;
+  top: 2; /* Stick the navbar to the top of the viewport */
+  z-index: 100; /* Ensure it appears above other content */
+}
+
+.navbar a {
+  text-decoration: none; /* Remove underlines from links */
+  padding: 10px 20px; /* Add padding to links for better clickability */
+}
+
+/* Style the links when hovered */
+.navbar a:hover {
+  background-color: #555; /* Change the background color on hover */
+}

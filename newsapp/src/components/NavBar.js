@@ -10,7 +10,7 @@ export class NavBar extends Component {
   }
   render() {
     return (
-      <div className={`mode-${this.props.mode}`} style={this.props.style} >
+      <div className={`position-sticky mode-${this.props.mode}`} style={this.props.style} >
         <nav className={`navbar navbar-expand-lg bg-body-tertiary mode-${this.props.mode}`} style={this.props.navStyle}>
           <div className={`container-fluid mode-${this.props.mode}`} style={this.props.style}>
             <Link to="/" className={`navbar-brand mode-${this.props.mode}`} style={this.props.style}>NewsFlash</Link>

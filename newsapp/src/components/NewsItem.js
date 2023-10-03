@@ -16,7 +16,7 @@ export class NewsItem extends Component {
               <p className={`card-text mode-${this.props.mode}`} style={this.props.style}>{description}</p>
               <p className="card-text"><small style={this.props.style}>By {!author?"Unknown":author} on {new Date(date).toGMTString()}</small></p>
               {/* <a href={newsUrl} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm" > Read Full Article </a> */}
-            </div>          
+            </div>      
           </div>
         {/* </a> */}
       </div>
