@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
-import PropTypes from 'prop-types'
-
-import {
-  Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export class News extends Component {
   // variables ussed in the class....
@@ -283,97 +277,198 @@ export class News extends Component {
   //   category:PropTypes.string,
   // }
 
-  constructor(){
-    super();
+  constructor(props){
+    // If want to use props inside constructor then we need to send the props inside the constructor as well in the super......
+    super(props);
     // creating states in the constructor....
     this.state={
       // articles:[this.articles],
       articles:[],
-      loading:false,
+      loading:true,
       page:1,
       totalRecords: 0,
-      pageSize:6,
-      cardBorderColor:"white"
+      pageSize:15,
+      cardBorderColor:"white",
+      apiKey:process.env.REACT_APP_NEWS_API_KEY
     }
+    document.title=`${this.convertToCamaelCase(this.props.category)} - NewsFlash`
   }
-  async componentDidMount(){
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&pageSize=${this.state.pageSize}`
 
-    this.setState({
-      loading:true,
-    })
+  convertToCamaelCase = (value) => {
+    return value.charAt(0).toUpperCase()+value.slice(1);
+  }
+
+  async updateNews (){
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.state.apiKey}&page=${this.state.page}&pageSize=${this.state.pageSize}`
+
+    // calling callback function defined in the parent component......
+    this.props.setProgressBar(20)
+
+    // this.setState({
+    //   loading:true,
+    // })
 
     let data = await fetch(url);
     let parsedData = await data.json()
+
+    // calling callback function defined in the parent component......
+    this.props.setProgressBar(70)
+
     console.log(parsedData)
     this.setState({
       articles: parsedData.articles,
-      page:1,
       totalRecords:parsedData.totalResults,
       loading:false,
-    })
+    }) 
+
+    // calling callback function defined in the parent component......
+    this.props.setProgressBar(100)
+  }
+
+  async componentDidMount(){
+    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.state.apiKey}&pageSize=${this.state.pageSize}`
+
+    // this.setState({
+    //   loading:true,
+    // })
+
+    // let data = await fetch(url);
+    // let parsedData = await data.json()
+    // console.log(parsedData)
+    // this.setState({
+    //   articles: parsedData.articles,
+    //   page:1,
+    //   totalRecords:parsedData.totalResults,
+    //   loading:false,
+    // })
+
+    await this.updateNews()
   }
 
   handlePreviousClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${this.state.page - 1}&pageSize=${this.state.pageSize}`
+    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.state.apiKey}&page=${this.state.page - 1}&pageSize=${this.state.pageSize}`
     
-    this.setState({
-      loading:true,
+    // this.setState({
+    //   loading:true,
+    // })
+
+    // let data = await fetch(url);
+    // let parsedData = await data.json()
+    // console.log(parsedData)
+    // this.setState({
+    //   articles: parsedData.articles,
+    //   page: this.state.page - 1,
+    //   loading:false,
+    // }) 
+
+    await this.setState({
+      page:this.state.page-1
     })
 
-    let data = await fetch(url);
-    let parsedData = await data.json()
-    console.log(parsedData)
-    this.setState({
-      articles: parsedData.articles,
-      page: this.state.page - 1,
-      loading:false,
-    }) 
+    await this.updateNews()
   }
 
   handleNextClick = async () => {
-    // keyHarry=  dbe57b028aeb41e285a226a94865f7a7&page=
-    // keySajjad= 31c9cb518db0432aa69000aa8d5205b6&page=
-
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${this.state.page + 1}&pageSize=${this.state.pageSize}`
+    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.state.apiKey}&page=${this.state.page + 1}&pageSize=${this.state.pageSize}`
         
+    // this.setState({
+    //   loading:true,
+    // })
+
+    // let data = await fetch(url);
+    // let parsedData = await data.json()
+    // console.log(parsedData)
+    // this.setState({
+    //   articles: parsedData.articles,
+    //   page: this.state.page+1,
+    //   loading:false,
+    // })
+
+    await this.setState({
+      page:this.state.page + 1
+    })
+
+    await this.updateNews()    
+  }
+  
+  fetchMoreData = async () => {
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.state.apiKey}&page=${this.state.page+1}&pageSize=${this.state.pageSize}`
+    
+    this.props.setProgressBar(20)
+
     this.setState({
+      page:this.state.page + 1,
       loading:true,
     })
+
+    this.props.setProgressBar(50)
 
     let data = await fetch(url);
     let parsedData = await data.json()
     console.log(parsedData)
-    this.setState({
-      articles: parsedData.articles,
-      page: this.state.page+1,
-      loading:false,
-    })
-  }
-  
+
+    this.props.setProgressBar(70)
+
+    await setTimeout(()=>{
+      this.setState({
+        articles: this.state.articles.concat(parsedData.articles),
+        totalRecords:parsedData.totalResults,
+        loading:false,
+      }) 
+    }, 750)
+
+    this.props.setProgressBar(100)
+  };
+
   render() {
-    let {country, category} = this.props
     return (
       <div className={`mode-${this.props.mode}`} style={this.props.style}>
-        <div className="container py-3">
-            <h1 className='text-center mb-3'>World's Current News</h1>
+       {/* <div className={`container mode-${this.props.mode}`} style={this.props.style}> */}
+         {/* <div className="container py-3"> */}
+            {/* <div className={`mode-${this.props.mode}`} style={this.props.style}> */}
+              <h1 className={`pt-3 pb-4 mb-0 text-center mode-${this.props.mode}`} style={this.props.style}>NewsFlash - Latest "{this.convertToCamaelCase(this.props.category)}" Headlines</h1>  
+            {/* </div> */}
             {this.state.loading && <Spinner/>}
             {/* this.state.loading is true then hide all the news cards and if the this.state.loading is false then display only cards
                 or in another words to display the loader hide the cards and to hide the loader display the cards. */}
-            <div className={`row mode-${this.props.mode}`} style={this.props.style}>
-              {!this.state.loading && this.state.articles.map((element)=>{                
-                // Here articles is a list, which contails details of multiple different news article.
-                // Here I am looping through the articles using map and returning a component with unique id..... 
-                return <div className={`col-md-4 my-3 mode-${this.props.mode}`} style={this.props.style} id={element.url}>
-                  <NewsItem title={element.title} cardBorderColor={this.state.cardBorderColor} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} mode={this.props.mode} style={this.props.style}/>
+
+            <InfiniteScroll
+                      className={`mode-${this.props.mode}`}
+                      style={this.props.style}
+                      // number of details to cancatinate after each loading......
+                      dataLength={this.state.articles.length}
+                      // fetchMoreData function used to concat the next requested details to display after loading.......
+                      next={this.fetchMoreData}
+                      // if has more value is true then only infinite loader work.....
+                      hasMore={this.state.articles.length !== this.state.totalRecords}
+                      // loader that want to display while data is getting fetched and concatinating the data to display.....
+                      loader={this.state.loading && <Spinner/>}   
+                    >
+              {/* <div className={`ds-card-grid    ds-card-grid-include-descriptions row mode-${this.props.mode}`} style={this.props.style}> */}
+              <div className="container">
+                <div className={`row mode-${this.props.mode}`} style={this.props.style}>
+                  {/* {!this.state.loading && this.state.articles.map((element)=>{  */}
+                  {this.state.articles.map((element)=>{ 
+                    // Here articles is a list, which contails details of multiple different news article.
+                    // Here I am looping through the articles using map and returning a component with unique id..... 
+                    return <div className={`col-md-4 my-3 mode-${this.props.mode}`} style={this.props.style} id={element.url}>
+                      <a href={element.url} target="_blank" rel="noreferrer" style={{textDcoration:"none"}}>
+                        <NewsItem title={element.title} cardBorderColor={this.state.cardBorderColor} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} mode={this.props.mode} style={this.props.style} date={element.publishedAt} author={element.author} 
+                        source={element.source.name}/>
+                      </a>
+                    </div>
+                  })}
                 </div>
-              })}
-            </div>
-        </div>
-        <div className="container d-flex justify-content-between pb-5">
+              </div>
+            </InfiniteScroll>
+        {/* </div> */}
+
+        {/* Removing next and previous buttons as adding the infinite scrolling */}
+        {/* <div className="container d-flex justify-content-between pb-5">
           <button disabled={this.state.page<=1} type="button" className="btn btn-primary" onClick={this.handlePreviousClick}>&larr; Previous</button>
           <button disabled={this.state.page*this.state.pageSize>=this.state.totalRecords} type="button" className="btn btn-primary" onClick={this.handleNextClick}>Next &rarr;</button>
-        </div>
+        </div> */}
+        {/* </div> */}
       </div>
     )
   }
